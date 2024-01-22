@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tables</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full flex justify-center">
+<div class="w-[70%]">
+    <div class="w-full h-[7vh] text-[250%] justify-center items-center m-auto"><strong>Table selection</strong></div>
+    <div class="w-full h-[90vh] flex justify-center border-2 border-black  p-4">
+        <!-- content -->
+        <div class="w-1/2 grid grid-cols-5 gap-4 overflow-y-auto">
+            <div th:each="table: ${tables}">
+                <button th:id="${table.id}" th:with="ba=${table.availability}" th:class="'btnDetailTable w-full h-28 flex justify-center text-white bg-['+${ba}+']'">
+                    <div th:id="${table.id}" th:text="${table.number}" class="pt-12">1</div> 
+                </button>
+                <button th:id="${table.id}" th:class="'btnEditTable w-full h-4 flex items-end justify-center text-white bg-['+${table.availability}+']'">edit</button> 
+                <!-- popup -->
+                <div th:id="${'content' + table.id}" class="displayEditTable z-10 hidden absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] w-full max-w-sm bg-white border border-blue-200 rounded-lg shadow dark:bg-blue-800 dark:border-blue-700">
+                    <form th:action="@{/table/cashieredit/{id} (id=${table.id})}" method="Post">
+                        <div class="px-4 pt-4">
+                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Edit Tables</h5>
+                        </div>
+                        <div class="px-4 pt-4">
+                            <div class="pb-2">Change table to available !!</div>
+                        </div>
+                        <div class="flex flex-col items-center pb-10">
+                            <div class="flex mt-4 space-x-3 md:mt-6">
+                                <button type="submit" class="inline-flex items-center justify-center w-24  py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Okay</button>
+                                <button type="button" class="btncancel inline-flex items-center justify-center w-24 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-blue-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table information -->
+        <!-- List content -->
+        <div class="w-1/2 h-full flex flex-col justify-center p-8 relative">               
+            <div>
+                <div class="w-full flex justify-center">Table information</div>
+                <div id="content" class="hidden w-full h-full">
+                    <div th:each="table: ${tables}" class="displayTable w-full h-full hidden" th:id="${'btnDetailTable'+table.id}">
+                        <div class="w-full flex justify-center">
+                            <div>Table : </div>
+                            <div th:text="${table.number}">&#160 2</div>
+                        </div>
+                        <div class="w-full flex justify-center">
+                            <div>Status : </div>
+                            <div th:if="${table.availability} == '#32d86a'" th:text="'available'">&#160 available</div>
+                            <div th:if="${table.availability} == '#EC061D'" th:text="'busy'">&#160 available</div>
+                        </div>
+                        <div class="absolute bottom-0 right-0">
+                            <a th:href="@{/table/{id} (id=${table.id})}" class="inline-flex items-center justify-center w-24  py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Done</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0">
+                <a th:href="@{/cashier}" class="ml-4 inline-flex items-center justify-center w-24 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-blue-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Back</a>
+            </div>           
+        </div>
+    </div>
+</div>    
+    <!-- popup edit table -->
+    
+    <script>
+        // next generation
+        var btnEditTable = document.getElementsByClassName("btnEditTable");
+        var displayEditTable = document.getElementsByClassName("displayEditTable");
+        for(let edit of btnEditTable){
+            edit.addEventListener("click", (e) => {
+                for(let content of displayEditTable){
+                    content.style.display="none"
+                }
+                let content = document.getElementById('content' + e.target.id);
+                console.log(e.target.id);
+                content.style.display="block"
+            })
+        }
+
+        // cancel
+        var btncancel=document.getElementsByClassName('btncancel');
+        for(let cancel of btncancel){
+            cancel.addEventListener("click",() =>{    
+                for(let display of displayEditTable){
+                    display.style.display= "none";
+                }
+            })
+        }
+        // display detail
+        var btnDetailTable = document.getElementsByClassName("btnDetailTable");
+        var content = document.getElementById("content");
+        var displayTable = document.getElementsByClassName("displayTable");
+        for(let table of btnDetailTable){
+            table.addEventListener("click",() => {
+                content.style.display="block"
+            })
+        }
+        const tableSelected = e => {
+            let tableID = e.target.id;
+            for(let table of displayTable){
+                table.style.display = "none";
+            }
+            let btnDetailTable_and_id = "btnDetailTable" + tableID
+            document.getElementById(btnDetailTable_and_id).style.display="block";
+        }
+        for(let table of btnDetailTable){
+            table.addEventListener("click", tableSelected);
+        }
+    </script>
+</body>
+</html>

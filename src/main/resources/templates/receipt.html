@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GIC Cafe Receipt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        margin: auto;
+        border: 2px solid black;
+        width: 650px;
+        height: auto;
+        padding: 40px;
+        background-color: #ffff;
+      }
+      .header > p {
+        font-size: 1.5rem;
+      }
+      h2 {
+        color: black;
+        justify-content: center;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+      .border {
+        border-bottom: 3px solid black;
+      }
+      .sub_content {
+        display: flex;
+        justify-content: space-around;
+        color: bold black;
+      }
+      p {
+        font-size: 1rem;
+        text-align: center;
+        justify-content: center;
+      }
+      .sub_content1 {
+        display: flex;
+        justify-content: space-between;
+        height: 35px;
+      }
+      .sub_content2 {
+        display: flex;
+        justify-content: space-between;
+        color: bold black;
+      }
+      /* .subcontent3 {
+        height: 90px;
+      } */
+      .sub_content3 {
+        display: flex;
+        justify-content: space-between;
+      }
+      .total {
+        width: 55%;
+      }
+      .sub_total {
+        display: flex;
+        justify-content: space-around;
+      }
+      .btn-close{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <h2>BROWN</h2>
+        <p>COFFEE AND DRINK</p>
+      </div>
+      <div class="border"></div>
+      <div th:each="receipt: ${receipts}">
+        <p th:text="${receipt.id}">Order Number: 179</p>
+      </div> 
+      <div class="border"></div>
+      <div class="content">
+        <p>Brown 6(Sothearos)|098666221</p>
+        <p>browncoffee.com.kh</p>
+      </div>
+      <div class="border"></div>
+      <div class="sub_content">
+        <div>DINE IN</div>
+        <div>BILL</div>
+        <div>16572</div>
+      </div>
+      <div class="border"></div>
+      <div th:each="receipt: ${receipts}" class="subcontent1">
+        <div  class="sub_content1">
+          <p>Cashier : luna</p>
+          <p th:text="${receipt.table_number}">Table : SEC-47</p>
+        </div>
+        <div class="sub_content1">
+          <p th:text="${receipt.order_date}">T-in : 29/22/2023</p>
+          <p th:text="${receipt.order_date}">T-out : 29/22/2023</p>
+        </div>
+        <div class="sub_content1">
+          <p>PAX : 2</p>
+          <p th:text="${receipt.invoice_id}">Counter: 01</p>
+        </div>
+      </div>
+      <div class="border"></div>
+      <div class="sub_content2">
+        <div>Description</div>
+        <div>QT</div>
+        <div>Unit Price</div>
+        <div>Amount</div>
+      </div>
+      <div class="border"></div>
+      <div class="subcontent3">
+        <div th:each="order: ${orders}" class="sub_content3">
+          <p th:text="${order.category_name}">Apple Carrot</p>
+          <p th:text="${order.quantity}">Regular 1</p>
+          <p th:text="${order.price}">2.95</p>
+          <p th:text="${order.quantity * order.price}">2.95</p>
+        </div>
+      </div>
+      <div class="border"></div>
+      <div th:each="receipt: ${receipts}" class="total">
+        <div class="sub_total">
+          <p>Sub Total ($):</p>
+          <p th:text="${receipt.total_dollar}">5.35</p>
+        </div>
+        <div class="sub_total">
+          <p>Sub Total (Riel):</p>
+          <p th:text="${receipt.total_riel}">5.35</p>
+        </div>
+        <div class="border"></div>
+        <div class="sub_total">
+          <p>Cash Received ($):</p>
+          <p th:text="${receipt.cash_received}">5.35</p>
+        </div>
+        <div class="sub_total">
+          <p>Cash Received (Riel):</p>
+          <p >00.00</p>
+        </div>
+        <div class="border"></div>
+        <div class="sub_total">
+          <p>Cash Back ($):</p>
+          <p th:text="${receipt.cash_back}">5.35</p>
+        </div>
+        <div class="sub_total">
+          <p>Cash Back (Riel):</p>
+          <p>0.00</p>
+        </div>
+      </div>
+      <div class="border"></div>
+      <div class="End_content">
+        <p>WiFi Password: cappuccino</p>
+        <p>Delivery Hotline: 023 215 215</p>
+      </div>
+    </div>
+    <div class="btn-close">
+      <a th:href="@{/drinkSelection/deleteAllOrder}" class="font-medium text-red-600 dark:text-red-500">Close</a>
+    </div>
+  </body>
+</html>

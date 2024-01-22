@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍔 Update Food</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full h-fit">
+    <div class="w-[90%] bg-[#e3e8ee] m-auto">
+        <div class="border-[1px] border-[#6590fa] p-2">Update Food</div>
+        <div class="border-[1px] border-[#6590fa] p-2 w-full flex">
+            <div class="w-1/2">
+                <form th:action="@{/foods/{id}(id=${foods.id})}" th:object="${foods}" method="Post" enctype="multipart/form-data">
+                    <div class="w-full flex">
+                        <div class="w-[40%]">
+                            <div>Food code&#160; : &#160; </div>
+                            <div class="my-2">Food name : &#160;</div>
+                            <div>Food Category :</div>
+                            <div class="my-2">Price :</div>
+                            <div class="mb-2">Food Image :</div>
+                            <div>Note :</div>
+                        </div>
+                        <div class="w-[60%]">
+                            <input th:field="*{food_code}" class="w-full border-[1px] border-[#6590fa] pl-2" type="text">
+                            <input th:field="*{food_name}" class="w-full border-[1px] border-[#6590fa] pl-2 my-2" type="text">                        
+                            <input th:field="*{food_category}" class="w-full border-[1px] border-[#6590fa] pl-2" type="text">                            
+                            <input th:field="*{price}" class="w-full border-[1px] border-[#6590fa] pl-2 my-2" type="text">
+                            <div>
+                                <input  class="mb-2" name="file" type="file">
+                            </div>
+                            <textarea th:field="*{note}" class="w-full h-24 border-[1px] border-[#6590fa]" name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="w-full flex gap-1">
+                        <button class="w-[60%] bg-[#32d86a] text-white rounded-md py-2" type="submit">Update</button>
+                        <a th:href="@{/admin}" class="w-[40%] bg-[#595959] text-white text-center rounded-md py-2" >Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="w-1/2 pl-2">
+                <img class="w-[33%] m-auto" src="/bibimbap.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

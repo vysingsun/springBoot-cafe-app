@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }        
+     
+        .drink_scroll {
+            display: flex;
+            justify-content: center;
+            /* margin: auto; */
+            padding: 10px;
+            width: 50%;
+        }
+        
+        .drinks {
+            text-align: center;
+            background-color: rgb(25, 25, 112);
+            color: #fff;
+            min-width: 100px;
+            height: 55px;
+            margin: auto 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: black;
+        }
+        
+        .left_scroll {
+            background-color: rgb(25, 25, 112);
+            width: 80px;
+            height: 65px;
+            justify-content: start;
+        }
+        
+        .left_scroll i {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+        
+        .right_scroll {
+            background-color: rgb(25, 25, 112);
+            width: 80px;
+            height: 65px;
+            justify-content: end;
+        }
+        
+        .right_scroll i {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+        .drink_types {
+            background-color: rgb(65, 105, 225);
+            display: flex;
+            border: 2px solid rgb(25, 25, 112);
+            width: 100%;
+            height: 60px;
+            margin: auto;
+            overflow: auto;
+            scroll-behavior: smooth;
+            cursor: pointer;
+        }
+        
+        .drink_types::-webkit-scrollbar {
+            display: none;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Georgia:wght@300&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Georgia", serif;
+        }
+
+        button {
+            padding: 1rem;
+            margin: 1rem 0 0 1rem;
+        }
+
+        .main_wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main_wrapper .wrapper_box {
+            width: 30rem;
+            height: fit-content;
+            border: 1px solid black;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color: rgb(225, 237, 237);
+        }
+
+        .main_wrapper .wrapper_box .size_box {
+            width: 15rem;
+            height: 10rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid black;
+            margin-left: 2rem;
+        }
+
+        .main_wrapper .wrapper_box .size_box .size_text {
+            font-size: 1.5rem;
+        }
+
+        .main_wrapper .wrapper_box .size_box .box {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgb(25, 25, 112);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .main_wrapper .wrapper_box .size_box .box:hover {
+            background-color: gray;
+        }
+
+        .main_wrapper .wrapper_box .option_box {
+            width: 28rem;
+            font-size: 1.5rem;
+            border: 1px solid black;
+            margin-left: 1rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .main_wrapper .wrapper_box .option_box .option_text {
+            font-size: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        .main_wrapper .wrapper_box .option_box .box_ {
+            width: 10rem;
+            height: 3rem;
+            background-color: rgb(25, 25, 112);
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .main_wrapper .wrapper_box .option_box .box_ span {
+            margin-right: 1rem;
+        }
+
+        .main_wrapper .wrapper_box .option_box .row1 {
+            margin-left: 1rem;
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        .main_wrapper .wrapper_box .option_box .row1 input {
+            width: 2rem;
+            height: 3rem;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+        }
+
+        .main_wrapper .wrapper_box .option_box .row2 {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .main_wrapper .wrapper_box .option_box .row2 select {
+            width: 10rem;
+            height: 3rem;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .main_wrapper .wrapper_box .option_box .row3 {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .main_wrapper .wrapper_box .option_box .row3 select {
+            width: 10rem;
+            height: 3rem;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .main_wrapper .wrapper_box .button {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            margin-right: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .main_wrapper .wrapper_box .button .ok_button {
+            width: 8rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            color: white;
+            background-color: rgb(25, 25, 112);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            transition: 1s;
+        }
+
+        .main_wrapper .wrapper_box .button .ok_button:hover {
+            transform: scale(1.1);
+            color: yellow;
+        }
+
+        .main_wrapper .wrapper_box .button .cancel_button {
+            width: 8rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            color: white;
+            background-color: rgb(25, 25, 112);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            transition: 1s;
+        }
+
+        .main_wrapper .wrapper_box .button .cancel_button:hover {
+            transform: scale(1.1);
+            color: yellow;
+        }
+    </style>
+</head>
+<body class="w-full ">
+    <div class="flex w-[70%] m-auto">
+        <div class="drink_scroll bg-slate-400">
+            <div class="left_scroll">
+                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+            </div>
+            <div class="drink_types">
+                <button id="btnCoolDrink" class="drinks cool_drinks" type="submit" >Cool Drinks</button>
+                <button id="btnHotDrink" class="drinks hot_drinks" type="submit"  >Hot Drinks</button>
+                <button id="btnFrappe" class="drinks frappes" type="submit"  style="outline: none">Frappes</button>
+                <button id="btnFood" class="drinks milk" type="submit"  style="outline: none;">Foods</button>
+                <!-- <button class="drinks mocha" type="submit"  style="outline: none;">Mocha</button> -->
+            </div>
+            <div class="right_scroll">
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="w-1/2 h-[85px] items-center pt-8 text-white justify-center bg-slate-600 text-center">Order Information</div>
+    </div> 
+    
+    <div class="flex w-[70%] m-auto">
+        <!-- list Cool drink-->
+        <div id="listCoolDrink" class="w-1/2 bg-slate-600 grid grid-cols-3 gap-4 p-4">
+            <div th:each="drink: ${drinks}" th:if="${drink.category == 'cool drinks'}" class="w-full bg-white h-fit">
+                <button class="addOrderCoolDrink" th:id="${drink.id}">
+                    <img th:id="${drink.id}" class="addOrderCoolDrink" src="data:image/jpeg;base64," th:attrappend="src=${drink.image}" alt="hii">
+                    <div th:id="${drink.id}" class="addOrderCoolDrink" th:text = "${drink.category_name}">2</div>   
+                </button>
+
+                <!-- popup form -->
+                <div th:id="${'content' + drink.id}" class="content bg-[#e3e8ee] w-[30%] z-10 rounded-lg p-4 absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] displayAddOrder hidden">                    
+                    <form th:action="@{/drinkSelection}" th:object="${newOrder}" method="Post">
+                        <div>
+                            <select th:field="*{category_name}" class="hidden">
+                                <option th:value="${drink.category_name}"></option>
+                            </select>
+                            <select th:field="*{price}" class="hidden">
+                                <option th:value="${drink.price}"></option>
+                            </select>
+                        </div>
+                        <div  class="m-2">Size</div>
+                        <div>
+                            <ul class="flex flex-col sm:flex-row">
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="R" id="hs-horizontal-list-group-item-radio-1" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" checked>
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-1" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    R
+                                    </label>
+                                </div>
+                                </li>
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="L" id="hs-horizontal-list-group-item-radio-2" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-2" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    L
+                                    </label>
+                                </div>
+                                </li>
+                            
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="G" id="hs-horizontal-list-group-item-radio-3" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-3" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    G
+                                    </label>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 m-2">Option</div>
+                        <div class="bg-white p-4 rounded-lg">         
+                        <div class="flex items-center mr-4">
+                            <label for="purple-checkbox" class="mx-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cream</label>
+                            <input th:field="*{cream}" value="cream" checked id="purple-checkbox" type="checkbox"  class=" accent-purple-600  w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">            
+                        </div> 
+            
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Suger</div>
+                            <select th:field="*{suger}" name="suger" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="50">50%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="100">100%</option>
+                            </select>
+                        </div> 
+                        
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zone</div>
+                            <select th:field="*{zone}" name="zone" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div> 
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quantity</div>
+                            <input th:field="*{quantity}" name="quantity" id="quantity" type="number" min="1" value="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 my-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+                        </div>
+                        </div>
+                        <div class="flex justify-end pt-6">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button>
+                            <button  type="button" class="btncancel focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-500">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>
+        <!-- list hot drink-->
+        <div id="listHotDrink" class="w-1/2 bg-slate-600 grid grid-cols-3 gap-4 p-4 hidden">
+            <div th:each="drink: ${drinks}" th:if="${drink.category == 'hot drinks'}" class="w-full bg-white h-fit">
+                <button  class="addOrderHotDrink" th:id="${drink.id}">
+                    <img class="addOrderHotDrink" th:id="${drink.id}" src="data:image/jpeg;base64," th:attrappend="src=${drink.image}" alt="hii">
+                    <div class="addOrderHotDrink" th:id="${drink.id}" th:text = "${drink.category_name}">1</div>
+                </button>
+                <!-- popup form Hot drink-->
+                <div th:id="${'contentHot' + drink.id}" class="contentHot bg-[#e3e8ee] w-[30%] z-10 rounded-lg p-4 absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] displayAddOrderHot hidden">                    
+                    <form th:action="@{/drinkSelection}" th:object="${newOrder}" method="Post">
+                        <div>
+                            <select th:field="*{category_name}" class="hidden">
+                                <option th:value="${drink.category_name}"></option>
+                            </select>
+                            <select th:field="*{price}" class="hidden">
+                                <option th:value="${drink.price}"></option>
+                            </select>
+                        </div>
+                        <div  class="m-2">Size</div>
+                        <div>
+                            <ul class="flex flex-col sm:flex-row">
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="R" id="hs-horizontal-list-group-item-radio-1" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" checked>
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-1" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    R
+                                    </label>
+                                </div>
+                                </li>
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="L" id="hs-horizontal-list-group-item-radio-2" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-2" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    L
+                                    </label>
+                                </div>
+                                </li>
+                            
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="G" id="hs-horizontal-list-group-item-radio-3" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-3" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    G
+                                    </label>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 m-2">Option</div>
+                        <div class="bg-white p-4 rounded-lg">         
+                        <div class="flex items-center mr-4">
+                            <label for="purple-checkbox" class="mx-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cream</label>
+                            <input th:field="*{cream}" value="cream" checked id="purple-checkbox" type="checkbox"  class=" accent-purple-600  w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">            
+                        </div> 
+            
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Suger</div>
+                            <select th:field="*{suger}" name="suger" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="50">50%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="100">100%</option>
+                            </select>
+                        </div> 
+                        
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zone</div>
+                            <select th:field="*{zone}" name="zone" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div> 
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quantity</div>
+                            <input th:field="*{quantity}" name="quantity" id="quantity" type="number" min="1" value="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 my-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+                        </div>
+                        </div>
+                        <div class="flex justify-end pt-6">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button>
+                            <button  type="button" class="btncancelHot focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-500">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div>
+
+        <!-- list Frappes drink  -->
+        <div id="listFrappeDrink" class="w-1/2 bg-slate-600 grid grid-cols-3 gap-4 p-4 hidden">
+            <div th:each="drink: ${drinks}" th:if="${drink.category == 'frappes'}" class="w-full bg-white h-fit">
+                <button  class="addOrderFrappeDrink" th:id="${drink.id}">
+                    <img class="addOrderFrappeDrink" th:id="${drink.id}" src="data:image/jpeg;base64," th:attrappend="src=${drink.image}" alt="hii">
+                    <div class="addOrderFrappeDrink" th:id="${drink.id}" th:text = "${drink.category_name}">a</div>
+                </button>
+                <!-- popup Frappe form -->
+                <div th:id="${'contentFrappe' + drink.id}" class="contentFrappe bg-[#e3e8ee] w-[30%] z-10 rounded-lg p-4 absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] displayAddOrderFrappe hidden">                    
+                    <form th:action="@{/drinkSelection}" th:object="${newOrder}" method="Post">
+                        <div>
+                            <select th:field="*{category_name}" class="hidden">
+                                <option th:value="${drink.category_name}"></option>
+                            </select>
+                            <select th:field="*{price}" class="hidden">
+                                <option th:value="${drink.price}"></option>
+                            </select>
+                        </div>
+                        <div  class="m-2">Size</div>
+                        <div>
+                            <ul class="flex flex-col sm:flex-row">
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="R" id="hs-horizontal-list-group-item-radio-1" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" checked>
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-1" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    R
+                                    </label>
+                                </div>
+                                </li>
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="L" id="hs-horizontal-list-group-item-radio-2" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-2" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    L
+                                    </label>
+                                </div>
+                                </li>
+                            
+                                <li class="inline-flex items-center gap-x-2.5 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg sm:-ml-px sm:mt-0 sm:first:rounded-tr-none sm:first:rounded-bl-lg sm:last:rounded-bl-none sm:last:rounded-tr-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                <div class="relative flex items-start w-full">
+                                    <div class="flex items-center h-5">
+                                    <input th:field="*{size}" value="G" id="hs-horizontal-list-group-item-radio-3" name="hs-horizontal-list-group-item-radio" type="radio" class="border-gray-200 rounded-full dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                                    </div>
+                                    <label for="hs-horizontal-list-group-item-radio-3" class="ml-3 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                    G
+                                    </label>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 m-2">Option</div>
+                        <div class="bg-white p-4 rounded-lg">         
+                        <div class="flex items-center mr-4">
+                            <label for="purple-checkbox" class="mx-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cream</label>
+                            <input th:field="*{cream}" value="cream" checked id="purple-checkbox" type="checkbox"  class=" accent-purple-600  w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">            
+                        </div> 
+            
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Suger</div>
+                            <select th:field="*{suger}" name="suger" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="50">50%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="100">100%</option>
+                            </select>
+                        </div> 
+                        
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zone</div>
+                            <select th:field="*{zone}" name="zone" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div> 
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quantity</div>
+                            <input th:field="*{quantity}" name="quantity" id="quantity" type="number" min="1" value="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 my-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+                        </div>
+                        </div>
+                        <div class="flex justify-end pt-6">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button>
+                            <button  type="button" class="btncancelFrappe focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-500">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>   
+        </div>
+
+        <!-- list food-->
+        <div  id="listFood" class="w-1/2 bg-slate-600 grid grid-cols-3 gap-4 p-4 hidden">
+            <div  th:each="food: ${foods}" class="w-full bg-white h-fit">
+                <button  class="addOrderFood" th:id="${food.id}">
+                    <img class="addOrderFood" th:id="${food.id}" src="data:image/jpeg;base64," th:attrappend="src=${food.image}" alt="hii">
+                    <div class="addOrderFood" th:id="${food.id}" th:text="${food.food_name}">b</div>
+                </button>
+                <!-- popup form Food-->
+                <div th:id="${'contentFood' + food.id}" class="contentFood bg-[#e3e8ee] w-[30%] z-10 rounded-lg p-4 absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] displayAddOrderFood hidden">                    
+                    <form th:action="@{/drinkSelection}" th:object="${newOrder}" method="Post">
+                        <div>
+                            <select th:field="*{category_name}" class="hidden">
+                                <option th:value="${food.food_name}"></option>
+                            </select>
+                            <select th:field="*{price}" class="hidden">
+                                <option th:value="${food.price}"></option>
+                            </select>
+                        </div>
+                        
+                        <div class="mt-4 m-2">Option</div>                        
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zone</div>
+                            <select th:field="*{zone}" name="zone" id="small" class="block w-full p-2 my-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div> 
+                        <div class="">
+                            <div class="m-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quantity</div>
+                            <input th:field="*{quantity}" name="quantity" id="quantity" type="number" min="1" value="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 my-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+                        </div>                       
+                        <div class="flex justify-end pt-6">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button>
+                            <button  type="button" class="btncancelFood focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-500">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>    
+        </div>
+
+        <!-- Order info -->
+        <div class="w-1/2 bg-slate-300 ">
+            <div class="relative overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="p-4">
+                                
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Product name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Size
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="order: ${orders}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td th:text="${order.id}" class="w-4 p-4">
+                                id
+                            </td>
+                            <th th:text="${order.category_name}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Iced Americano
+                            </th>
+                            <td th:text="${order.size}" class="px-6 py-4">
+                                R
+                            </td>
+                            <td th:text="${order.quantity}" class="px-6 py-4">
+                                2
+                            </td>
+                            <td th:text="${order.price}" class="px-6 py-4">
+                                $2.39
+                            </td>
+                            <td  class="px-6 py-4">
+                                <!-- th:href="@{/drinkSelection/delete/{id}(id=${order.id})} -->
+                                <a th:href="@{/drinkSelection/delete/{id}(id=${order.id})}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                            </td>
+                        </tr>    
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex m-6 justify-between space-x-3 md:mt-6">
+                <a th:href="@{/tables}">
+                    <button th:h class="inline-flex items-center justify-center w-24  py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit Tables</button>
+                </a>
+                <a th:href="@{/tables}">
+                    <button th:h class="inline-flex items-center justify-center w-24  py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check out</button>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <!-- logout -->
+    <div class="w-full flex justify-center pt-4">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="hover:!text-[#0ea5e9] inline-flex items-center justify-center w-28 py-3 text-sm font-medium text-center text-[#2e70fc] bg-white border border-blue-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Logout</button>
+        </form>
+    </div>
+    <script>
+        // next generation popup add cool 
+        var addOrderCoolDrink = document.getElementsByClassName("addOrderCoolDrink");
+        var displayAddOrder = document.getElementsByClassName("displayAddOrder");
+        for(let cool of addOrderCoolDrink){
+            cool.addEventListener("click",(e) => {
+                let listContent = document.getElementsByClassName("content")
+                for(let c of listContent){
+                    c.style.display = "none"
+                }
+                let content = document.getElementById('content' + e.target.id);
+                console.log(e.target.id);
+                content.style.display="block"
+            })
+        }
+        // cancel add cool
+        var btncancel=document.getElementsByClassName('btncancel');
+        for(let cancel of btncancel){
+            cancel.addEventListener("click",() =>{    
+                for(let display of displayAddOrder){
+                    display.style.display= "none";
+                }
+            })
+        }
+        // popup form hot drink
+        var addOrderHotDrink = document.getElementsByClassName("addOrderHotDrink");
+        var displayAddOrderHot = document.getElementsByClassName("displayAddOrderHot");
+        for(let hot of addOrderHotDrink){
+            hot.addEventListener("click", (e) => {
+                let listContentHot = document.getElementsByClassName("contentHot")
+                for(let h of listContentHot){
+                    h.style.display="none"
+                }
+                let contentHot_id = document.getElementById('contentHot' + e.target.id)
+                contentHot_id.style.display="block"
+            })
+        }
+        // cancel add Hot
+        var btncancelHot = document.getElementsByClassName("btncancelHot");
+        for(let cancel of btncancelHot){
+            cancel.addEventListener("click", () => {
+                for(let display of displayAddOrderHot){
+                    display.style.display="none";
+                }
+            })
+        }
+        // popup Frappe form drink
+        var addOrderFrappeDrink = document.getElementsByClassName("addOrderFrappeDrink");
+        var displayAddOrderFrappe = document.getElementsByClassName("displayAddOrderFrappe");
+        for(let frappe of addOrderFrappeDrink){
+            frappe.addEventListener("click", (e) => {
+                let listContentFrappe = document.getElementsByClassName("contentFrappe");
+                for(let f of listContentFrappe){
+                    f.style.display="none";
+                }
+                let contentFrappe_id = document.getElementById('contentFrappe' + e.target.id);
+                console.log(contentFrappe_id)
+                contentFrappe_id.style.display="block"
+            })
+        }
+        // cancel add Frappe
+        var btncancelFrappe = document.getElementsByClassName("btncancelFrappe");
+        for(let cancel of btncancelFrappe){
+            cancel.addEventListener("click", () => {
+                for(let display of displayAddOrderFrappe){
+                    display.style.display="none";
+                }
+            })
+        }
+        // pupup food form
+        var addOrderFood = document.getElementsByClassName("addOrderFood");
+        var displayAddOrderFood = document.getElementsByClassName("displayAddOrderFood");
+        for(let food of addOrderFood){
+            food.addEventListener("click", (e) => {
+                let listContentFood = document.getElementsByClassName("contentFood")
+                for(let fo of listContentFood){
+                    fo.style.display="none";
+                }
+                let listContentFood_id = document.getElementById('contentFood' + e.target.id);
+                // console.log(listContentFood_id);
+                listContentFood_id.style.display="block"
+            })
+        }
+        // cancel add food
+        var btncancelFood = document.getElementsByClassName("btncancelFood");
+        for(let cancel of btncancelFood){
+            cancel.addEventListener("click", () => {
+                for(let display of displayAddOrderFood){
+                    display.style.display="none";
+                }
+            })
+        }
+
+        const prev_scroll = document.querySelector(".left_scroll");
+        const next_scroll = document.querySelector(".right_scroll");
+        const drink_type_scroll = document.querySelector(".drink_types");
+
+        prev_scroll.addEventListener("click", () => {
+            drink_type_scroll.scrollLeft -= 350;
+        });
+
+        next_scroll.addEventListener("click", () => {
+            drink_type_scroll.scrollLeft += 350;
+        });
+
+        var btnHotDrink = document.getElementById("btnHotDrink");
+        var listHotDrink = document.getElementById("listHotDrink");
+
+        var btnCoolDrink = document.getElementById("btnCoolDrink");
+        var listCoolDrink = document.getElementById("listCoolDrink");
+
+        var btnFrappe =document.getElementById("btnFrappe");
+        var listFrappeDrink = document.getElementById("listFrappeDrink");
+        
+        var btnFood = document.getElementById("btnFood");
+        var listFood = document.getElementById("listFood");
+
+        btnHotDrink.addEventListener("click", () => {
+            listHotDrink.style.display="grid"
+
+            listCoolDrink.style.display="none"
+            listFrappeDrink.style.display="none"
+            listFood.style.display="none"
+        })
+
+        btnCoolDrink.addEventListener("click", () => {
+            listCoolDrink.style.display="grid"
+
+            listHotDrink.style.display="none"
+            listFrappeDrink.style.display="none"
+            listFood.style.display="none"
+        })
+
+        btnFrappe.addEventListener("click", () => {
+            listFrappeDrink.style.display="grid"
+
+            listCoolDrink.style.display="none"
+            listHotDrink.style.display="none"
+            listFood.style.display="none"
+        })
+
+        btnFood.addEventListener("click", () => {
+            listFood.style.display="grid"
+
+            listCoolDrink.style.display="none"
+            listHotDrink.style.display="none"
+            listFrappeDrink.style.display="none"
+        })
+    </script>
+</body>
+</html>

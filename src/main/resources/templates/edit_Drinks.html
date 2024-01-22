@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full h-fit">
+    <div class="w-[90%] bg-[#e3e8ee] m-auto">
+        <div class="border-[1px] border-[#6590fa] p-2">Update drinks</div>
+        <div class="border-[1px] border-[#6590fa] p-2 w-full flex">           
+            <div class="w-1/2">
+                <form th:action="@{/drinks/{id}(id=${drinks.id})}" th:object="${drinks}" method="Post" enctype="multipart/form-data">
+                    <div class="w-full flex">
+                        <div class="w-[40%]">
+                            <div>Category code&#160; : &#160; </div>
+                            <div class="my-2">Category name : &#160;</div>
+                            <div>Category :</div>
+                            <div class="my-2">Price :</div>
+                            <div class="mb-2">Drink Image :</div>
+                            <div>Note :</div>
+                        </div>
+                        <div class="w-[60%]">
+                            <input th:field="*{category_code}" name="category_code" id="category_code" class="w-full border-[1px] border-[#6590fa] pl-2" type="text">
+                            <input th:field="*{category_name}" name="category_name" id="category_name" class="w-full border-[1px] border-[#6590fa] pl-2 my-2" type="text">
+                            <div class="w-full flex gap-1">
+                                <select th:field="*{category}" class="w-[90%] border-[1px] border-[#6590fa] " name="category" id="category">
+                                    <option value="hot drinks">Hot Drinks</option>
+                                    <option value="cool drinks">Cool drinks</option>
+                                    <option value="frappes">Frappes</option>
+                                </select>
+                                <button id="add" class="w-[10%] bg-[#32d86a] border-[1px] border-[#32d86a] text-white"><strong>+</strong></button>
+                            </div>
+                            <input th:field="*{price}" name="price" id="price" class="w-full border-[1px] border-[#6590fa] pl-2 my-2" type="text">
+                            <div>
+                                <input class="mb-2" name="file" type="file">
+                            </div>
+                            <textarea th:field="*{note}" class="w-full h-24 border-[1px] border-[#6590fa]" name="note" id="note" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="w-full flex gap-1">
+                        <button class="w-[60%] bg-[#32d86a] text-white rounded-md py-2" type="submit">Update</button>
+                        <a th:href="@{/admin}" class="w-[40%] bg-[#595959] text-white text-center rounded-md py-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="w-1/2 pl-2">
+                <img class="w-[60%] m-auto" src="https://st4.depositphotos.com/14846838/20450/v/450/depositphotos_204503936-stock-illustration-different-hot-cold-drink-glass.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] -->
+    <div id="content" class="w-[40%] absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] hidden">
+        <div  class="w-full bg-[#e3e8ee]">
+            <div class="border-[1px] border-[#6590fa] p-2">New Category</div>
+            <div class="border-[1px] border-[#6590fa] p-2">
+                <div class="w-full flex">
+                    <div>Category code&#160; : &#160; </div>
+                    <input class="w-[55%] border-[1px] border-black pl-2" type="text">
+                </div>
+                <div class="w-full flex my-2">
+                    <div>Category name : &#160;</div>
+                    <input class="w-[55%] border-[1px] border-black pl-2" type="text">
+                </div>
+                <div class="w-full">
+                    <button class="w-[60%] bg-[#385723] text-white rounded-md py-2" type="submit">Update</button>
+                    <button id="btncancel" class="w-[35%] bg-[#595959] text-white rounded-md py-2" type="submit">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const addBtn = document.getElementById("add");
+        var content = document.getElementById('content')
+        var btncancel=document.getElementById('btncancel');
+
+        addBtn.addEventListener("click",() =>{    
+             content.style.display="block"
+        })
+        btncancel.addEventListener("click",() =>{    
+             content.style.display="none"
+        })
+
+    //     const form = document.querySelector('form');
+    //     form.addEventListener('submit', (event) => {
+    //     event.preventDefault(); // prevent default form submission behavior
+
+    //     const data = {
+    //         category_code: form.elements.category_code.value,
+    //         category_name: form.elements.category_name.value,
+    //         category: form.elements.category.value,
+    //         price: form.elements.price.value,
+    //         note: form.elements.note.value
+    //     };
+
+    //     fetch('http://localhost:8080/Drinks/add', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(data)
+    //     }).then(response => {
+    //         if (response.ok) {
+    //             console.log('Data posted successfully');
+    //         } else {
+    //             console.error('Error posting data');
+    //         }
+    //     }).catch(error => {
+    //         console.error('Error:', error);
+    //     });
+    // });
+    </script>
+</body>
+</html>

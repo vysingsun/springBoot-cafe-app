@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>v2</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full">
+	<!-- @{/receipt/{id}(id=${calculator.id})} -->
+	
+	<div class="w-full m-auto max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+		<form class="space-y-6" th:action="@{/receipt}" th:object="${receipts}" method="Post">
+			<h5 class="text-xl font-medium text-gray-900 dark:text-white">Calculator</h5>
+			<div>
+				<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cash received</label>
+				<input th:field="*{cash_received}" type="number" id="cashInput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Input Cash received" required>
+			</div>
+			<div>
+				<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Input Rate Dollar to Riel</label>
+				<input th:field="*{rate}" type="number" id="rateInput" placeholder="4100" value="4100" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+			</div>
+			<div >
+				<div class="w-full flex justify-between">
+
+					<div class="w-full text-center">Total $
+						<input type="number" th:field="*{invoice_id}" th:value="${invoice.id}" class="hidden">
+						<input type="number" th:field="*{table_number}" th:value="${invoice.table_number}" class="hidden">
+						<input type="date" th:field="*{order_date}" th:value="${invoice.order_date}" class="hidden">
+						<input th:field="*{total_dollar}" th:value="${invoice.total_price}" type="number"  step="0.01" class="hidden">
+					</div>
+					<div class="w-full text-center">Total Riel
+						
+					</div>
+					<div class="w-full text-center">Cash Back</div>
+				</div>
+				<div class="w-full flex justify-between gap-4 pt-3">
+					<div th:text="${invoice.total_price}" id="total" class="w-full text-center border border-gray-400 rounded-lg">5</div>
+					<div   class="w-full text-center border border-gray-400 rounded-lg">
+						<input type="number"  step="0.01" th:field="*{total_riel}" id="exOut" class="hidden">
+						<div id="output_exo"></div>
+					</div>
+					<div  class="w-full text-center border border-gray-400 rounded-lg">
+						<input type="number" step="0.01"  th:field="*{cash_back}" id="cash_back_out" class="hidden">
+						<div id="output_cbo"></div>
+					</div>
+				</div>
+			</div>
+			<div class="flex justify-center">
+				<button onclick="calculate()" type="button" class="w-1/3 flex justify-center text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">=</button>
+			</div>
+			<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Print Receipt</button>  
+		</form>
+	</div>
+
+	<script>
+		function calculate() {
+			var cashInput = document.getElementById("cashInput");
+			var rateInput = document.getElementById("rateInput");
+			var total = document.getElementById("total");
+			var cash_back_output = document.getElementById("cash_back_out");
+			var exchangeOutput = document.getElementById("exOut");
+
+			
+			let cashInputValue = parseFloat(cashInput.value);
+			let rateInputValue = parseFloat(rateInput.value);
+			let totalValue = parseFloat(total.innerText);
+			let back = (cashInputValue - totalValue).toFixed(2)
+			let riel = (rateInputValue * totalValue).toFixed(2)
+
+			console.log(riel);
+			cash_back_output.value=back;
+			exchangeOutput.value=riel;
+			document.getElementById("output_exo").innerText=riel
+			document.getElementById("output_cbo").innerText=back
+		}
+
+	</script>
+</body>
+</html>
+            

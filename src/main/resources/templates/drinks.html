@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> -->
+</head>
+<body class="w-full bg-[#f8f8fb]">
+    <div class="w-[80%] m-auto">
+      
+      <div class="w-full flex justify-content-between bg-[#fafafc] p-3">
+        <div class="w-full">
+            <a class=" py-2 px-3 rounded-lg drop-shadow-lg shadow-white bg-white text-[#2e70fc] hover:!bg-[#2e70fc] hover:!text-white" th:href="@{cashiers/newCashiers}" type="button">
+              <div class="flex gap-2 gap-2">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div> 
+                <div>New Cashier</div>
+              </div> 
+            </a>
+            <a class="mx-3 py-2 px-3 rounded-lg drop-shadow-lg shadow-white bg-white text-[#2e70fc]" th:href="@{drinks/newDrinks}" type="button">
+              <div class="flex gap-2">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                  </svg>                                    
+                </div>
+                <div>
+                  New Drink
+                </div>
+              </div>               
+            </a>
+            <a class="py-2 px-3 rounded-lg drop-shadow-lg shadow-white bg-white text-[#2e70fc]" th:href="@{foods/newFoods}" type="button">
+              <div class="flex gap-2">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
+                  </svg>                  
+                </div>
+                <div>
+                  New Food
+                </div>
+              </div>  
+            </a>
+            <a class="mx-3 py-2 px-3 rounded-lg drop-shadow-lg shadow-white bg-white text-[#2e70fc]" type="button">
+              <div class="flex gap-2">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                  </svg>                  
+                </div>
+                <div>
+                  New Category 
+                </div>
+              </div>              
+            </a>
+            <a class="py-2 px-3 rounded-lg drop-shadow-lg shadow-white bg-white text-[#2e70fc]" th:href="@{history}" type="button">
+              <div class="flex gap-2">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+                  </svg>                                    
+                </div>
+                <div>
+                  Order history
+                </div>
+              </div>  
+            </a>
+            <a class="ml-3 py-2 px-3 rounded-lg drop-shadow-lg shadow-white bg-white text-[#2e70fc]" th:href="@{table/newTable}" type="button">
+              <div class="flex gap-2">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
+                  </svg>                 
+                </div>
+                <div>
+                  Manager Table
+                </div>
+              </div>             
+            </a>
+        </div>
+        <!-- logout -->
+        <div>
+          <form th:action="@{/logout}" method="post">
+            <button type="submit" class="hover:!text-[#0ea5e9] inline-flex items-center justify-center w-28 py-3 text-sm font-medium text-center text-[#2e70fc] bg-white border border-blue-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Logout</button>
+          </form>
+        </div>
+      </div>
+        <div class="w-full h-[80vh] bg-white flex">
+            <div class="w-1/2 h-full">
+              <!-- bg-slate-400 -->
+                <div class="w-full bg-[#eceff4] gap-2 pl-12 pt-3">
+                    <button id="cashier" class="rounded-t-lg bg-[#2e70fc] text-white px-3 hover:!bg-white hover:!text-[#2e70fc]" type="button">Cashier</button>
+                    <button id="drink" class="rounded-t-lg bg-[#2e70fc] text-white px-3 hover:!bg-white hover:!text-[#2e70fc]" type="button">Drinks</button>
+                    <button id="food" class="rounded-t-lg bg-[#2e70fc] text-white px-3 hover:!bg-white hover:!text-[#2e70fc]" type="button">Foods</button>
+                </div>
+                <!--wrapper main content Drink -->
+               
+                <div id="mainDrink" class="w-full h-[75vh] overflow-x-auto overflow-y-auto hidden">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                              <th scope="col" class="p-4"></th>
+                              <th scope="col" class="px-3 hover:!text-[#0ea5e9]">Drink Code</th>
+                              <th scope="col" class="px-3 hover:!text-[#0ea5e9]">Drink Name</th>
+                              <th scope="col" class="pl-3 hover:!text-[#0ea5e9]">Price</th>
+                              <th scope="col" ></th>
+                              <th scope="col" class="hover:!text-[#0ea5e9] w-6">Action</th>
+                              <th scope="col" ></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr th:each = "drink: ${drinks}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                              <td th:text = "${drink.id}" class="w-4 p-4"></td>
+                              <th th:text = "${drink.category_code}" scope="row" class="px-3  font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+                              <td th:text = "${drink.category_name}" class="px-3 "></td>
+                              <td th:text = "${drink.price}" class="px-3 "></td>
+                              <td  >
+                                <a th:href="@{/drinks/edit/{id}(id=${drink.id})}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="rounded-md bg-white drop-shadow-lg text-[#2e70fc] hover:!bg-[#2e70fc] hover:!text-white w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                  </svg>                                  
+                                </a>
+                              </td>
+                              <td class="pl-[2px]">
+                                <a th:href="@{/drinks/delete/{id}(id=${drink.id})}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="rounded-md bg-white drop-shadow-lg text-[#2e70fc] hover:!bg-[#2e70fc] hover:!text-white w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                  </svg>                                  
+                                </a>
+                              </td>
+                              <td >
+                                <button th:id="${drink.id}" class=" selected flex item-center">                                
+                                    <svg th:id="${drink.id}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="shadow-inner rounded-md bg-[#2e70fc] text-white hover:!bg-[#0ea5e9] hover:!text-white selected w-6 h-6">
+                                      <path  stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                    </svg>                                                                   
+                                </button>
+                              </td>
+                          </tr>    
+                      </tbody>
+                    </table>
+                    
+                </div>
+                <!-- wrapper main content food -->
+                <div id="mainFood" class="w-full overflow-x-auto overflow-y-auto hidden">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                          <th scope="col" class="p-4"></th>
+                          <th scope="col" class="px-3 hover:!text-[#0ea5e9]">Food Code</th>
+                          <th scope="col" class="px-3 hover:!text-[#0ea5e9]">Food Name</th>
+                          <th scope="col" class="pl-3 hover:!text-[#0ea5e9]">Price ($)</th>
+                          <th scope="col" ></th>
+                          <th scope="col" class="hover:!text-[#0ea5e9]">Action</th>
+                          <th scope="col" ></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each = "food: ${foods}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">                         
+                          <td th:text = "${food.id}" class="w-4 p-4"></td>
+                          <td th:text = "${food.food_code}" class="px-3"></td>
+                          <td th:text = "${food.food_name}" class="px-3"></td>
+                          <td th:text = "${food.price}" class="px-3"></td>
+                          <td>
+                              <a th:href="@{/foods/edit/{id}(id=${food.id})}" class="btn btn-primary">Update</a>                                                    
+                          </td>
+                          <td>
+                            <a th:href="@{/foods/delete/{id}(id=${food.id})}" class="btn btn-danger">Delete</a>
+                          </td> 
+                          <td>
+                            <button th:id="${food.id}" class="btn btn-primary btnDetailFood">Detail</button>
+                          </td>                           
+                        </tr>                          
+                      </tbody>
+                  </table>
+              </div>
+              <!-- wrapper main content Cashier -->
+              <div id="mainCashier" class="w-full overflow-x-auto overflow-y-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th scope="col" class="p-4"></th>
+                        <th scope="col" class="px-3 hover:!text-[#0ea5e9]">Cashier Name</th>
+                        <th scope="col" class="px-3 hover:!text-[#0ea5e9]">Login</th>            
+                        <th scope="col"></th>
+                        <th scope="col" class="hover:!text-[#0ea5e9]">Action</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each = "cashier: ${cashiers}" th:if="${cashier.id != 1}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">                         
+                        <td th:text = "${cashier.id}" class="w-4 p-4"></td>
+                        <td class="px-3">
+                          <span th:text = "${cashier.first_name}"></span>
+                          <span th:text = "${cashier.last_name}"></span>
+                        </td>
+                        <td th:text = "${cashier.login}" class="px-3"></td>                       
+                        <td>
+                          <a th:href="@{/cashiers/edit/{id}(id=${cashier.id})}" class="btn btn-primary">Update</a>                                  
+                        </td>  
+                        <td>
+                          <a th:href="@{/cashiers/delete/{id}(id=${cashier.id})}" class="btn btn-danger">Delete</a>
+                        </td> 
+                        <td>
+                          <button th:id="${cashier.id}" class="btn btn-primary btnDetailCashier">Detail</button>
+                        </td>                         
+                      </tr>                          
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <!--content detail pic drink -->
+            <div id="contentDrink" class="w-1/2 bg-white hidden">             
+                <div class="w-full flex justify-center p-2"><strong>Drink Information</strong></div>
+                <div th:each = "drink: ${drinks}"  class="w-full flex hidden displayDrinks" th:id="${'selectedDrink'+drink.id}">
+                  <div class="w-1/2">
+                    <img class=" m-auto" src="data:image/jpeg;base64," th:attrappend="src=${drink.image}" alt="hii">
+                  </div>
+                  <div class="w-1/2 pl-2">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <tbody class="text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                        <tr >
+                          <th class="p-2 pr-3">Code</th>
+                          <th th:text = "${drink.category_code}">bv0440</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Name</th>
+                          <th th:text = "${drink.category_name}">b</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Category</th>
+                          <th th:text = "${drink.category}">bv0440</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Price</th>
+                          <th th:text = "${'$ ' + drink.price}">b</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Note</th>
+                          <th th:text = "${drink.note}">b</th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+
+          <!--content detail pic food -->
+          <div id="contentFood" class="w-1/2 hidden">             
+              <div class="w-full flex justify-center p-2"><strong>Food Information</strong></div>
+              <div th:each = "food: ${foods}"  class="w-full flex hidden displayFood" th:id="${'btnDetailFood'+food.id}">
+                  <div class="w-1/2">
+                    <img class=" m-auto" src="data:image/jpeg;base64," th:attrappend="src=${food.image}" alt="hii">
+                  </div>
+                  <div class="w-1/2 pl-2">
+                      <table class="text-sm text-left text-gray-500 dark:text-gray-400">
+                        <tbody class="text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                            <th class="p-2 pr-3">Code</th>
+                            <th th:text = "${food.food_code}">bv0440</th>
+                          </tr>
+                          <tr>
+                            <th class="p-2">Name</th>
+                            <th th:text = "${food.food_name}">b</th>
+                          </tr>
+                          <tr>
+                            <th class="p-2">Category</th>
+                            <th th:text = "${food.food_category}">bv0440</th>
+                          </tr>
+                          <tr>
+                            <th class="p-2">Price</th>
+                            <th th:text = "${'$' + food.price}">b</th>
+                          </tr>
+                          <tr>
+                            <th class="p-2">Note</th>
+                            <th th:text = "${food.note}">b</th>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          <!--content detail pic Cashier -->
+          <div id="contentCashier" class="w-1/2 hidden">             
+              <div class="w-full flex justify-center p-2"><strong>Cashier Information</strong></div>
+              <div  th:each = "cashier: ${cashiers}" class="w-full flex hidden displayCashier" th:id="${'btnDetailCashier'+cashier.id}">
+                <div class="w-1/2">
+                  <img class=" m-auto" src="data:image/jpeg;base64," th:attrappend="src=${cashier.image}" alt="hii">
+                </div>
+                <div class="w-1/2 pl-2">
+                    <table class="text-sm text-left text-gray-500 dark:text-gray-400">
+                      <tbody class="text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                          <th class="p-2 pr-3">Name</th>
+                          <th>
+                            <span th:text = "${cashier.first_name}"></span>
+                            <span th:text = "${cashier.last_name}"></span>
+                          </th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Gender</th>
+                          <th th:text = "${cashier.sex}">b</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Age</th>
+                          <th th:text = "${cashier.age}">19</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Date of Birth</th>
+                          <th th:text = "${cashier.date_of_birth}">b</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Login</th>
+                          <th th:text="${cashier.login}">bv0440</th>
+                        </tr>
+                        <tr>
+                          <th class="p-2">Password</th>
+                          <th >******</th>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+    </div>
+    <script>
+      // btn list detail drink
+      let drinks = document.getElementsByClassName("selected");
+      var contentDrink =document.getElementById("contentDrink");
+      
+      for (let drink of drinks) {
+        drink.addEventListener("click",() => {
+          contentDrink.style.display="block"
+        })
+      }
+        const drinkSelected = e => {
+            let drinkID = e.target.id;  // Get ID of Clicked Element
+            
+            let dDrinks = document.getElementsByClassName("displayDrinks")
+            for (let drink of dDrinks) {
+              drink.style.display = "none";
+            }
+            
+            let sdrinkid = "selectedDrink"+drinkID
+            console.log(sdrinkid);
+            document.getElementById(sdrinkid).style.display = "flex";
+        }
+        for (let drink of drinks) {
+            drink.addEventListener("click", drinkSelected);
+            
+        }
+
+        // btn list detail food
+        var btnListFood = document.getElementsByClassName("btnDetailFood");
+        var contentFood = document.getElementById("contentFood");
+        var displayFood = document.getElementsByClassName("displayFood");
+        for(let food of btnListFood){
+          food.addEventListener("click",() => {
+            contentFood.style.display="block"
+          })
+        }
+        const foodSelected = e => {
+          let foodID = e.target.id;
+          
+          for(let food of displayFood){
+            food.style.display = "none";
+          }
+          let btnDetailFood_and_id = "btnDetailFood" + foodID
+          document.getElementById(btnDetailFood_and_id).style.display="flex";
+        }
+        for(let food of btnListFood){
+          food.addEventListener("click", foodSelected);
+        }
+
+        // btn list detail cashier
+        var btnDetailCashier = document.getElementsByClassName("btnDetailCashier");
+        var contentCashier = document.getElementById("contentCashier");
+        var displayCashier = document.getElementsByClassName("displayCashier");
+        for(let cashier of btnDetailCashier){
+          cashier.addEventListener("click",() => {
+            contentCashier.style.display="block"
+          })
+        }
+        const cashierSelected = e => {
+          let cashierID = e.target.id;
+          for(let cashier of displayCashier){
+            cashier.style.display="none";
+          }
+          let btnDetailCashier_and_id = "btnDetailCashier" + cashierID
+          document.getElementById(btnDetailCashier_and_id).style.display="flex";
+        }
+        for(let cashier of btnDetailCashier){
+          cashier.addEventListener("click", cashierSelected);
+        }
+
+        // eventClick
+        var mainDrink = document.getElementById("mainDrink");
+        var btnDrink = document.getElementById("drink");
+        
+
+        var mainFood = document.getElementById("mainFood");
+        var btnFood = document.getElementById("food");
+
+        var btnCashier = document.getElementById("cashier");
+        var mainCashier = document.getElementById("mainCashier");
+        
+        btnDrink.addEventListener("click",() =>{
+          mainDrink.style.display="block"
+
+          mainCashier.style.display="none"
+          mainFood.style.display="none"
+
+          contentFood.style.display="none"
+          contentCashier.style.display="none"
+        })
+
+        btnFood.addEventListener("click",() =>{
+          mainFood.style.display="block"
+
+          mainCashier.style.display="none"
+          mainDrink.style.display="none"
+
+          contentDrink.style.display="none"
+          contentCashier.style.display="none"
+        })
+
+        btnCashier.addEventListener("click",() => {
+          mainCashier.style.display="block"
+
+          mainFood.style.display="none"
+          mainDrink.style.display="none"
+
+          contentDrink.style.display="none"
+          contentFood.style.display="none"
+
+        })
+    </script>
+</body>
+</html>
